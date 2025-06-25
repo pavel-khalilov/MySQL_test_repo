@@ -1,2 +1,2 @@
 # SQL_test_repo
-Repository for testing MySQL
+This repository is intended to showcase testing ability of MySQL along with Java
