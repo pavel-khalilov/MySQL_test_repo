@@ -52,4 +52,4 @@ build/
 .DS_Store
 
 ### project ###
-db.connection.parameters
+db.properties

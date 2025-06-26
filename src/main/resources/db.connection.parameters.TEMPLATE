@@ -1,5 +1,0 @@
-#paste credentials to connect with the DB
-
-db.url=<paste URL>
-db.user=<login>
-db.password=23051985
