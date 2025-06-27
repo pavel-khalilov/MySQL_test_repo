@@ -6,11 +6,12 @@ import java.util.Properties;
 
 public final class ProjectUtils {
     private static final Properties PROPERTIES = loadProperties();
+    private static final String CI = "CI";
 
     private ProjectUtils() {};
 
     public static boolean isCI() {
-        return "true".equalsIgnoreCase(System.getenv("CI"));
+        return "true".equalsIgnoreCase(System.getenv(CI));
     }
 
     public static Properties loadProperties() {
