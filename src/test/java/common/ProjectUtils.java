@@ -9,6 +9,10 @@ public final class ProjectUtils {
 
     private ProjectUtils() {};
 
+    public static boolean isCI() {
+        return "true".equalsIgnoreCase(System.getenv("CI"));
+    }
+
     public static Properties loadProperties() {
         Properties properties = new Properties();
 
