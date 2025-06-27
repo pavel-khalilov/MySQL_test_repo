@@ -17,14 +17,18 @@ public final class ProjectUtils {
     public static Properties loadProperties() {
         Properties properties = new Properties();
 
-        try (InputStream inputStream = ProjectUtils.class.getClassLoader().getResourceAsStream("db.properties")) {
-            if (inputStream != null) {
-                properties.load(inputStream);
-            } else {
-                System.out.println("db.properties file not found");
+        if (isCI()) {
+            properties.putAll(System.getenv());
+        } else {
+            try (InputStream inputStream = ProjectUtils.class.getClassLoader().getResourceAsStream("db.properties")) {
+                if (inputStream != null) {
+                    properties.load(inputStream);
+                } else {
+                    System.out.println("db.properties file not found");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return properties;
     }

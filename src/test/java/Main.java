@@ -7,5 +7,6 @@ public class Main {
         System.out.println(ProjectUtils.getUser());
         System.out.println(ProjectUtils.loadProperties());
         System.out.println(ProjectUtils.isCI());
+        System.out.println();
     }
 }
