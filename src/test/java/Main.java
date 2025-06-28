@@ -2,11 +2,11 @@ import common.ProjectUtils;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(ProjectUtils.getPassword());
-        System.out.println(ProjectUtils.getUrl());
-        System.out.println(ProjectUtils.getUser());
+        System.out.println("Password: " + ProjectUtils.getPassword());
+        System.out.println("Url: " + ProjectUtils.getUrl());
+        System.out.println("User: " + ProjectUtils.getUser());
         System.out.println(ProjectUtils.loadProperties());
-        System.out.println(ProjectUtils.isCI());
+        System.out.println("is CI: " + ProjectUtils.isCI());
         System.out.println();
     }
 }
