@@ -19,10 +19,12 @@ public final class ProjectUtils {
 
         if (isCI()) {
             properties.putAll(System.getenv());
+            System.out.println("Credentials loaded from CI environment");
         } else {
             try (InputStream inputStream = ProjectUtils.class.getClassLoader().getResourceAsStream("db.properties")) {
                 if (inputStream != null) {
                     properties.load(inputStream);
+                    System.out.println("Credentials loaded from 'db.properties' file");
                 } else {
                     System.out.println("db.properties file not found");
                 }
