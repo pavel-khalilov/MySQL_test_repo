@@ -36,14 +36,14 @@ public final class ProjectUtils {
     }
 
     public static String getUrl() {
-        return PROPERTIES.getProperty("db.url");
+        return PROPERTIES.getProperty("DB_URL");
     }
 
     public static String getUser() {
-        return PROPERTIES.getProperty("db.user");
+        return PROPERTIES.getProperty("DB_USER");
     }
 
     public static String getPassword() {
-        return PROPERTIES.getProperty("db.password");
+        return PROPERTIES.getProperty("DB_PASSWORD");
     }
 }
