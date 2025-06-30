@@ -1,6 +1,30 @@
-name: Run tests
+name: RUN TESTS
 
 on:
   pull_request:
     branches:
       - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install JDK
+        uses: actions/setup-java"м4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+          cache: 'maven'
+
+      - name: Run maven tests
+        run: mvn test
+        #env:
+        #  DB_URL: ${{ secrets.DB_URL }}
+        #  DB_USER: ${{ secrets.DB_USER }}
+        #  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
