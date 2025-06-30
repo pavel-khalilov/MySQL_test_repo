@@ -9,8 +9,8 @@ public class SelectQueryExample {
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
 
-            String sql = "select * from customer where customerId = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            String sqlQuery = "select * from customer where customerId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
             preparedStatement.setInt(1, 5);
             ResultSet resultSet = preparedStatement.executeQuery();
 
