@@ -5,6 +5,6 @@ import org.testng.annotations.Test;
 public class EnvSecretsTest {
     @Test
     public void testEnvSecrets() {
-        Assert.assertEquals("root", ProjectUtils.getUser());
+        Assert.assertEquals(ProjectUtils.getUser(), "root");
     }
 }
