@@ -6,22 +6,18 @@ on:
       - main
 
 jobs:
-  run-maven_test-on-pull-request:
+  maven_test:
     runs-on: ubuntu-latest
     env:
       DB_URL: ${{ secrets.DB_URL }}
       DB_USER: ${{ secrets.DB_USER }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      DB_NAME: ${{ secrets.DB_NAME }}
 
     services:
       mysql:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          #MYSQL_DATABASE: ${{ secrets.DB_NAME }}
-          #MYSQL_USER: ${{ secrets.DB_USER }}
-          #MYSQL_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
         ports:
           - 3306:3306
@@ -58,6 +54,7 @@ jobs:
       - name: Load DB schema
         run: |
           mysql -h 127.0.0.1 -P 3306 -u"$DB_USER" -p"$DB_PASSWORD" < init/Chinook_MySql.sql
+          mysql -h 127.0.0.1 -P 3306 -u"$DB_USER" -p"$DB_PASSWORD" < init/classicmodels.sql
 
       - name: Run maven tests
         run: mvn test
