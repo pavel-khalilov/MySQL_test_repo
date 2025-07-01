@@ -8,6 +8,24 @@ on:
 jobs:
   run-maven_test-on-pull-request:
     runs-on: ubuntu-latest
+    env:
+      DB_URL: ${{ secrets.DB_URL }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
     steps:
       - name: Clone repo
@@ -22,9 +40,21 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
+      - name: Wait for MySQL to be ready
+        run: |
+          for i in {1..30}; do
+          if mysqladmin ping -h127.0.0.1 -u"$DB_USER" -p"$DB_PASSWORD" --silent; then
+           echo "MySQL is ready"
+           break
+          fi
+          echo "Waiting for MySQL..."
+          sleep 2
+          done
+
+      - name: Load DB schema
+        run: |
+          mysql -h 127.0.0.1 -P 3306 -u"$DB_USER" -p"$DB_PASSWORD" < init/Chinook_MySql.sql
+          mysql -h 127.0.0.1 -P 3306 -u"$DB_USER" -p"$DB_PASSWORD" < init/classicmodels.sql
+
       - name: Run maven tests
         run: mvn test
-        env:
-          DB_URL: ${{ secrets.DB_URL }}
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
