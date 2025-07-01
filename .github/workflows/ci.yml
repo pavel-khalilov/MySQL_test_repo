@@ -19,7 +19,7 @@ jobs:
         image: mysql:8.0
 
         ports:
-          - 3306: 3306
+          - 3306:3306
         options: >-
           --health-cmd="mysqladmin ping --silent"
           --health-interval=10s
