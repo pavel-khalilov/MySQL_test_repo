@@ -57,7 +57,7 @@ jobs:
 
       - name: Load DB schema
         run: |
-          mysql -h 127.0.0.1 -P 3306 -u"$DB_USER" -p"$DB_PASSWORD" chinook < init/Chinook_MySql.sql
+          mysql -h 127.0.0.1 -P 3306 -u"$DB_USER" -p"$DB_PASSWORD" < init/Chinook_MySql.sql
 
       - name: Run maven tests
         run: mvn test
