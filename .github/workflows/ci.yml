@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  run-maven_test-on-pull-request:
+  maven_test:
     runs-on: ubuntu-latest
     env:
       DB_URL: ${{ secrets.DB_URL }}
